@@ -8,8 +8,11 @@ import {PlansPricingComponent} from './plans-pricing/plans-pricing.component';
 import {AboutComponent} from './about/about.component';
 import {HeaderComponent} from './header/header.component';
 import {SharedModule} from '@shared/shared.module';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {JwtHelperService, JwtModule} from '@auth0/angular-jwt';
+import {RequestInterceptor} from '@shared/helpers/http.interceptor';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ToastrModule} from 'ngx-toastr';
 
 
 // Token getter for JWT module
@@ -26,14 +29,21 @@ export function tokenGetter() {
         HttpClientModule,
         JwtModule.forRoot({
             config: {
-                tokenGetter: tokenGetter,
+                tokenGetter,
                 whitelistedDomains: ['localhost:3000'],
                 blacklistedRoutes: ['localhost:3000/auth/']
             }
         }),
+        BrowserAnimationsModule,
+        ToastrModule.forRoot()
     ],
     providers: [
-        JwtHelperService
+        JwtHelperService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: RequestInterceptor,
+            multi: true
+        },
     ]
 })
 export class CoreModule {
