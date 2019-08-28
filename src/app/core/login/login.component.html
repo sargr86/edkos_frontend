@@ -1,37 +1,40 @@
 <section class="login">
-  <div class="login-content">
-    <div class="login-left-side">
-      <img src="assets/images/login-logo.png">
-      <h1>Welcome to<br>EDKOS</h1>
-      <h6>Don't have an account?</h6>
-      <div class="w-100 text-center">
-        <a class="login-left-side-signup" routerLink="/register">Sign up</a>
-      </div>
-    </div>
-    <div class="login-right-side">
-      <div class="login-right-side-content">
-        <div class="login-right-side-man">
-          <img src="assets/images/login-man.png">
+    <div class="login-content">
+        <div class="login-left-side">
+            <img src="assets/images/login-logo.png">
+            <h1>Welcome to<br>EDKOS</h1>
+            <h6>Don't have an account?</h6>
+            <div class="w-100 text-center">
+                <a class="login-left-side-signup" routerLink="/register">Sign up</a>
+            </div>
         </div>
-        <form>
-          <h4>LOGIN</h4>
-          <input class="login-right-side-email" placeholder="Email Address" name="email">
-          <div class="position-relative">
-            <input class="login-right-side-password" placeholder="Password" name="password">
-            <img class="login-right-side-password-icon" src="assets/images/password-show.png">
-          </div>
-          <div class="login-right-side-block">
-            <div class="d-flex">
-              <input type="checkbox" class="login-right-side-checkbox-input" name="checkbox" id="checkbox" value="value">
-              <label class="login-right-side-checkbox" for="checkbox">keep me logged in</label>
+        <div class="login-right-side">
+            <div class="login-right-side-content">
+                <div class="login-right-side-man">
+                    <img src="assets/images/login-man.png">
+                </div>
+                <form [formGroup]="loginForm">
+                    <h4>LOGIN</h4>
+                    <input class="login-right-side-email" placeholder="Email Address" name="email"
+                           formControlName="email">
+                    <div class="position-relative">
+                        <input class="login-right-side-password" placeholder="Password" name="password"
+                               type="password" formControlName="password">
+                        <img class="login-right-side-password-icon" src="assets/images/password-show.png">
+                    </div>
+                    <div class="login-right-side-block">
+                        <div class="d-flex">
+                            <input type="checkbox" class="login-right-side-checkbox-input" name="checkbox" id="checkbox"
+                                   value="value">
+                            <label class="login-right-side-checkbox" for="checkbox">keep me logged in</label>
+                        </div>
+                        <div class="login-right-side-forgot-pass">
+                            <a href="forgot.html">Forgot Password ?</a>
+                        </div>
+                    </div>
+                    <button class="login-left-side-signin" (click)="logIn()">Sign In</button>
+                </form>
             </div>
-            <div class="login-right-side-forgot-pass">
-              <a href="forgot.html">Forgot Password ?</a>
-            </div>
-          </div>
-          <button class="login-left-side-signin">Sign In</button>
-        </form>
-      </div>
+        </div>
     </div>
-  </div>
 </section>

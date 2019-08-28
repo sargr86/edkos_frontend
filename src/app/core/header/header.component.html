@@ -18,7 +18,8 @@
                 </ul>
             </div>
             <div class="menu-right">
-                <a routerLink="/login">Login</a>
+                <a routerLink="/login" *ngIf="!auth.loggedIn()">Login</a>
+                <a (click)="logout()" *ngIf="auth.loggedIn()">Logout</a>
                 <button>Start Free Trial</button>
             </div>
         </div>
